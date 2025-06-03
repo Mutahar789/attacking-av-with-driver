@@ -2,15 +2,11 @@
 
 Scripts for creating CARLA simulations
 
----
-
 ## Running `pcla_drive.py`
 
 - To run `pcla_drive.py`, either:
   - Copy the script into the `PCLA` folder, **OR**
   - Add the `PCLA` folder to your `PYTHONPATH`
-
----
 
 ## Setup
 
@@ -28,14 +24,10 @@ Scripts for creating CARLA simulations
 - [CARLA Dev Branch](https://github.com/carla-simulator/carla/tree/ue4-dev#)
 - [DReyeVR Install Docs](https://github.com/HARPLab/DReyeVR/blob/main/Docs/Install.md)
 
----
-
 ## DReyeVR fork:
 https://github.com/Mutahar789/DReyeVR
 
 Using this fork will allow you to allow the vehicle.apply_control function to work on Ego Vehicle. Use this if you plan to integrate any model (e.g., vision-based) for driving task.
-
----
 
 ## Additional Setup Steps
 
@@ -45,8 +37,6 @@ Using this fork will allow you to allow the vehicle.apply_control function to wo
 
 2. In `carla/Util/ContentUtil.py`:
     - Change the **assets download URL** from `http` → `https` (to avoid download errors).
-
----
 
 ## Notes on Building PythonAPI
 
@@ -58,8 +48,6 @@ Using this fork will allow you to allow the vehicle.apply_control function to wo
 ```bash
 pip install wheel
 ```
-
----
 
 ## Building and Installing CARLA Python API
 
@@ -79,8 +67,6 @@ pip install dist/<path to .whl file>
 1. In your system Python installation
 2. In any Conda environment you are using
 
----
-
 ## Running DReyeVR
 
 Once you have built the shipping package, run CARLA with DReyeVR as:
@@ -96,7 +82,7 @@ CarlaUE4.exe -vr
 CarlaUE4.exe -vr -quality-level=Low
 ```
 
-Notes:
+**Notes:**
 
 - -quality-level=Low → boosts framerate without much loss of visual fidelity
 - You can also run without VR:
@@ -106,8 +92,6 @@ CarlaUE4.exe
 ```
 
 This launches flat-screen Carla with DReyeVR features still enabled.
-
----
 
 ## Useful Tips
 
@@ -119,8 +103,6 @@ netstat -ano | findstr 2000
 # Find the PID and kill it (example PID 68876)
 taskkill /PID 68876 /F
 ```
-
----
 
 ## Using PCLA Agent with DReyeVR
 
