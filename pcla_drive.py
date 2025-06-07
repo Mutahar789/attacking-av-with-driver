@@ -2,6 +2,7 @@ import carla
 import random
 import time
 from PCLA import PCLA, route_maker, location_to_waypoint
+import datetime
 
 def main():
     client = carla.Client('localhost', 2000)
@@ -9,13 +10,16 @@ def main():
     world = client.load_world('Town02')
     blueprint_library = world.get_blueprint_library()
 
+    # Retrieve spawn points
     spawn_points = world.get_map().get_spawn_points()
     if len(spawn_points) < 2:
         print("Not enough spawn points available.")
         return
 
+    # Randomly select start and end points
     start_point, end_point = random.sample(spawn_points, 2)
 
+    # Find DReyeVR ego vehicle
     ego_vehicle = None
     for actor in world.get_actors().filter('*vehicle*'):
         if 'dreyevr_vehicle' in actor.type_id:
@@ -28,26 +32,28 @@ def main():
 
     print(f"Ego vehicle: {ego_vehicle.type_id} (id {ego_vehicle.id})")
 
+    # Generate route
+    ego_vehicle.set_transform(start_point)
     waypoints = location_to_waypoint(client, start_point.location, end_point.location)
     route_file = 'random_route.xml'
     route_maker(waypoints, route_file)
 
-    agent_name = 'neat_neat'
+    # Initialize PCLA agent
+    agent_name = 'tfpp_l6_0'
     pcla_agent = PCLA(agent_name, ego_vehicle, route_file, client)
 
+    settings = world.get_settings()
+    settings.synchronous_mode = True
+    settings.fixed_delta_seconds = 0.05
+    world.apply_settings(settings)
+
     ego_vehicle.set_autopilot(False)
-    print("Autopilot OFF — External control enabled (if DReyeVR allows it)")
 
     try:
         while True:
             control = pcla_agent.get_action()
-            print(f"PCLA Control: {control}")
             ego_vehicle.apply_control(control)
             world.tick()
-            time.sleep(0.05)
-
-    except KeyboardInterrupt:
-        pass
 
     finally:
         pcla_agent.cleanup()
