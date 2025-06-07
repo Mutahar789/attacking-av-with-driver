@@ -5,7 +5,10 @@ Scripts for creating CARLA simulations
 ## Running `pcla_drive.py`
 
 - To run `pcla_drive.py`, either:
-  - Copy the script into the `PCLA` folder, **OR**
+  - Copy the script into the `PCLA` folder
+    
+    **OR**
+    
   - Add the `PCLA` folder to your `PYTHONPATH`
 
 ## Setup
@@ -32,12 +35,12 @@ Scripts for creating CARLA simulations
       
   Note: This is already done if you use the forked repository.
 
-2. When updating all the backup file links as specified in the Medium guide, change the URLS from `http` → `https` (to avoid download errors).
+2. When updating all the backup file links as specified in the Medium guide, change the URLs from `http` → `https` (to avoid download errors).
   
 ## DReyeVR fork:
 https://github.com/Mutahar789/DReyeVR
 
-Using this fork will allow you to allow the vehicle.apply_control function to work on Ego Vehicle. Use this if you plan to integrate any model (e.g., vision-based) for driving task.
+Using this fork will allow you to use the vehicle.apply_control function on the DReyeVR Ego Vehicle. Use this if you plan to integrate any model (e.g., vision-based) for the driving task.
 
 ## Notes on Building PythonAPI
 
@@ -96,7 +99,7 @@ This launches flat-screen Carla with DReyeVR features still enabled.
 
 ## Useful Tips
 
-1. The DReyeVR Ego vehicle is NOT the same as a standard CARLA vehicle type (when built with vanilla CARLA API). You must use the built Python API .whl corresponding to your DReyeVR build — not the official CARLA release.
+1. The DReyeVR Ego vehicle is NOT a CARLA wheeled vehicle type object when built with vanilla CARLA API. You must use the built Python API .whl corresponding to your DReyeVR build (not the official CARLA release) for installing using pip.
 2. **Freeing the CARLA port (2000)**: If CARLA was not closed cleanly, port 2000 might be stuck: 
 ```bash
 netstat -ano | findstr 2000
@@ -107,9 +110,9 @@ taskkill /PID 68876 /F
 
 ## Using PCLA Agent with DReyeVR
 
-The PCLA agent allows you to drive the DReyeVR Ego vehicle. Use these forks for best Windows compatibility:
+The PCLA agent allows you to drive the DReyeVR Ego vehicle. Use these forks for the best Windows compatibility:
 - DReyeVR fork:
 https://github.com/Mutahar789/DReyeVR
 
-- PCLA fork (for Windows):
+- PCLA fork:
 https://github.com/Mutahar789/PCLA
