@@ -24,19 +24,20 @@ Scripts for creating CARLA simulations
 - [CARLA Dev Branch](https://github.com/carla-simulator/carla/tree/ue4-dev#)
 - [DReyeVR Install Docs](https://github.com/HARPLab/DReyeVR/blob/main/Docs/Install.md)
 
-## DReyeVR fork:
-https://github.com/Mutahar789/DReyeVR
-
-Using this fork will allow you to allow the vehicle.apply_control function to work on Ego Vehicle. Use this if you plan to integrate any model (e.g., vision-based) for driving task.
-
 ## Additional Setup Steps
 
 1. In `carla/Unreal/CarlaUE4/CarlaUE4.Build.cs`, set:
     - `UseSRanipalPlugin = false;`  *(For HTC Vive Eye Tracking - disable if not used)*
     - `UseLogitechPlugin = false;`  *(For Logitech wheel/pedal set - disable if not used)*
+      
+  Note: This is already done if you use the forked repository.
 
-2. In `carla/Util/ContentUtil.py`:
-    - Change the **assets download URL** from `http` → `https` (to avoid download errors).
+2. When updating all the backup file links as specified in the Medium guide, change the URLS from `http` → `https` (to avoid download errors).
+  
+## DReyeVR fork:
+https://github.com/Mutahar789/DReyeVR
+
+Using this fork will allow you to allow the vehicle.apply_control function to work on Ego Vehicle. Use this if you plan to integrate any model (e.g., vision-based) for driving task.
 
 ## Notes on Building PythonAPI
 
